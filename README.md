@@ -1,2 +1,3 @@
-# numerai
-Shared code for Numerai models
+### numerai
+
+#### Shared code for Numerai models
