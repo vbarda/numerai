@@ -14,7 +14,7 @@ log_reg.fit(cv.X_train, cv.y_train)
 log_reg.predict(cv.X_test)
 ```
 
-*Model Inspector*
+*Model Inspector*:
 
 ```
 from models.inspection import ModelInspection
