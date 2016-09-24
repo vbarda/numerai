@@ -1,9 +1,12 @@
 import pandas as pd
 from sklearn.cross_validation import train_test_split
 
+RANDOM_STATE = 5
+
 class CrossValidation(object):
 
-    def __init__(self, df, feature_names=None, target_name='target', test_size=.4, **kwargs):
+    def __init__(self, df, feature_names=None, target_name='target', test_size=.4,
+                 random_state=RANDOM_STATE, **kwargs):
         '''Split the data into training and test samples:
            Args:
                df: (pd.DataFrame) source df with features and target
