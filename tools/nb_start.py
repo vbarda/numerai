@@ -13,6 +13,7 @@ import os
 from sklearn.decomposition import PCA
 from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
 from sklearn.feature_selection import RFECV, SelectKBest
+from sklearn.grid_search import GridSearchCV
 from sklearn.linear_model import LogisticRegression, LinearRegression, LassoCV, LassoLarsCV
 from sklearn.metrics import roc_auc_score, accuracy_score, f1_score
 from sklearn.pipeline import Pipeline, make_pipeline
