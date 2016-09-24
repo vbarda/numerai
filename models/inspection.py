@@ -1,6 +1,7 @@
 from attrdict import AttrDict
 from sklearn.metrics import f1_score, accuracy_score, roc_auc_score
 import pandas as pd
+from tqdm import tqdm
 
 from models.cross_validation import CrossValidation
 from tools.utils import binarize
@@ -31,7 +32,7 @@ class ModelInspector(CrossValidation):
         if full_train:
             X, y = self.X, self.y
         X, y = self.X_train, self.y_train
-        for model_name, model in self.models.items():
+        for model_name, model in tqdm(self.models.items()):
             model.fit(X, y)
             setattr(self, model_name, model)
         return self
