@@ -2,6 +2,12 @@
 
 #### Usage:
 
+*Start Notebook*:
+
+```
+%load ../tools/nb_start.py
+```
+
 *Cross Validation*:
 
 ```
