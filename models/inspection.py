@@ -1,10 +1,10 @@
 from attrdict import AttrDict
 from sklearn.metrics import f1_score, accuracy_score, roc_auc_score
-from sklearn.preprocessing import binarize
 import pandas as pd
 from tqdm import tqdm
 
 from models.cross_validation import CrossValidation
+from tools.utils import binarize
 
 DEFAULT_METRICS = f1_score, accuracy_score, roc_auc_score
 
@@ -59,6 +59,6 @@ class ModelInspector(CrossValidation):
 
 def model_metrics(model, X, y, metrics=DEFAULT_METRICS):
     '''Return a dictionary of metrics for a model'''
-    preds = binarize(model.predict(X), threshold=.5)
+    preds = binarize(model.predict(X))
     return {metric.__name__: metric(y, preds) for metric in metrics}
 
