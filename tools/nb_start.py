@@ -17,11 +17,11 @@ from sklearn.grid_search import GridSearchCV
 from sklearn.linear_model import LogisticRegression, LinearRegression, LassoCV, LassoLarsCV
 from sklearn.metrics import roc_auc_score, accuracy_score, f1_score
 from sklearn.pipeline import Pipeline, make_pipeline
-from sklearn.preprocessing import PolynomialFeatures, StandardScaler, binarize
+from sklearn.preprocessing import PolynomialFeatures, StandardScaler
 from sklearn.tree import DecisionTreeClassifier, DecisionTreeRegressor
 
 from models.cross_validation import CrossValidation
 from models.inspection import ModelInspector
+from tools.utils import binarize
 from tools.stats import display_biggest_corrs
 
-binarize = funcy.partial(binarize, threshold=.5)
