@@ -7,6 +7,7 @@ from tools.url_utils import safe_read_csv_from_url, filter_url_list, safe_url_op
 DEFAULT_NUMERAI_URL = 'https://numer.ai/rules'
 DEFAULT_NUMERAI_DATA_KEYWORD = 'dataset'
 
+
 def _get_data_urls(url=DEFAULT_NUMERAI_URL, data_keyword=DEFAULT_NUMERAI_DATA_KEYWORD):
     '''Get a list of urls to csvs that contain train and test data
     Args:
@@ -29,5 +30,5 @@ def get_training_data():
 
 def get_tournament_data():
     '''Get Numerai tournament data as pd.DataFrame'''
-    training_data_csv_url = filter_url_list(_get_data_urls(), 'tournament')
-    return safe_read_csv_from_url(training_data_csv_url)
+    tournament_data_csv_url = filter_url_list(_get_data_urls(), 'tournament')
+    return safe_read_csv_from_url(tournament_data_csv_url)

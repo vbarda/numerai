@@ -8,6 +8,14 @@
 %load ../tools/nb_start.py
 ```
 
+*Read datasets in*
+
+```
+from tools.load_datasets import get_training_data, get_tournament_data
+train_data = get_training_data()
+tournament_data = get_tournament_data()
+```
+
 *Cross Validation*:
 
 ```
