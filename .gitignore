@@ -1,5 +1,7 @@
 data/
 notebooks/
+constants.py
 *.ipynb
 *.csv
 *.pyc
+.DS_Store
