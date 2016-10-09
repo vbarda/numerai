@@ -14,4 +14,4 @@ def today(utc=False, **kwargs):
 def today_as_string(date_format='%Y-%m-%d', **kwargs):
     '''format today's date and return a string'''
     format_base = '{:' + date_format + '}'
-    return format_base.format(today(*kwargs))
+    return format_base.format(today(**kwargs))
