@@ -8,7 +8,7 @@
 %load ../tools/nb_start.py
 ```
 
-*Read datasets in*
+*Read datasets in*:
 
 ```
 from tools.load_datasets import get_training_data, get_tournament_data

@@ -17,7 +17,8 @@ def check_against_cache(existing_path):
                 print NO_FILE_WARNING
                 return df
             existing_data = pd.read_csv(existing_path)
-            if not existing_data.round(6).equals(df.round(6)):
+            if not (existing_data.round(DEFAULT_DECIMALS_TO_CHECK)
+                    .equals(df.round(DEFAULT_DECIMALS_TO_CHECK))):
                 print FILE_CHANGED_WARNING.format(strip_base_folder_name(existing_path))
             return df
         return func_wrapper
