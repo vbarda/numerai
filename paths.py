@@ -25,5 +25,3 @@ EXISTING_TOURNAMENT_DATA_PATH = make_tournament_data_path(MOST_RECENT_DATA_PATH)
 NEW_DATA_PATH = os.path.join(DATA_DIR_PATH, today_as_string())  # make a folder with today's date
 NEW_TRAIN_DATA_PATH = make_train_data_path(NEW_DATA_PATH)
 NEW_TOURNAMENT_DATA_PATH = make_tournament_data_path(NEW_DATA_PATH)
-
-
