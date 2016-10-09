@@ -1,6 +1,12 @@
 from bs4 import BeautifulSoup
+import os
+import pandas as pd
 import urllib2
 
+from paths import (EXISTING_TRAIN_DATA_PATH, EXISTING_TOURNAMENT_DATA_PATH,
+                   NEW_TRAIN_DATA_PATH, NEW_TOURNAMENT_DATA_PATH)
+from tools.decorator_utils import check_against_cache
+from tools.path_utils import mkdir_if_not_there
 from tools.url_utils import safe_read_csv_from_url, filter_url_list, safe_url_open
 
 
@@ -22,13 +28,31 @@ def _get_data_urls(url=DEFAULT_NUMERAI_URL, data_keyword=DEFAULT_NUMERAI_DATA_KE
     return [link for link in links if data_keyword in link]
 
 
+@check_against_cache(EXISTING_TRAIN_DATA_PATH)
 def get_training_data():
     '''Get Numerai training data as pd.DataFrame'''
     training_data_csv_url = filter_url_list(_get_data_urls(), 'training')
     return safe_read_csv_from_url(training_data_csv_url)
 
 
+@check_against_cache(EXISTING_TOURNAMENT_DATA_PATH)
 def get_tournament_data():
     '''Get Numerai tournament data as pd.DataFrame'''
     tournament_data_csv_url = filter_url_list(_get_data_urls(), 'tournament')
     return safe_read_csv_from_url(tournament_data_csv_url)
+
+
+def _save_data(getter, path):
+    '''wrapper around data getters to save to csv'''
+    mkdir_if_not_there(path)
+    return getter().to_csv(path, index=False)
+
+
+def save_training_data(path=NEW_TRAIN_DATA_PATH):
+    '''save training data'''
+    return _save_data(getter=get_training_data, path=path)
+
+
+def save_tournament_data(path=NEW_TOURNAMENT_DATA_PATH):
+    '''save tournament data'''
+    return _save_data(getter=get_tournament_data, path=path)
