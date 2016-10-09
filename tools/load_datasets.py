@@ -16,7 +16,7 @@ def _get_data_urls(url=DEFAULT_NUMERAI_URL, data_keyword=DEFAULT_NUMERAI_DATA_KE
             Default is DEFAULT_NUMERAI_DATA_KEYWORD
     '''
     url_string = safe_url_open(url).read()
-    soup = BeautifulSoup(url_string)
+    soup = BeautifulSoup(url_string, "html.parser")
     links = [tag.get('href') for tag in soup('a')]  # extract all links from the url page
     # return only links which contain data_keyword
     return [link for link in links if data_keyword in link]
