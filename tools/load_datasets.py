@@ -29,15 +29,26 @@ def _get_data_urls(url=DEFAULT_NUMERAI_URL, data_keyword=DEFAULT_NUMERAI_DATA_KE
 
 
 @check_against_cache(EXISTING_TRAIN_DATA_PATH)
-def get_training_data():
-    '''Get Numerai training data as pd.DataFrame'''
+def get_training_data(from_cache=False):
+    '''Get Numerai training data as pd.DataFrame
+    Args:
+        from_cache: (bool) if from_cache is True, data will be loaded from EXISTING_TRAIN_DATA_PATH
+    '''
+    if from_cache:
+        return pd.read_csv(EXISTING_TRAIN_DATA_PATH)
     training_data_csv_url = filter_url_list(_get_data_urls(), 'training')
     return safe_read_csv_from_url(training_data_csv_url)
 
 
 @check_against_cache(EXISTING_TOURNAMENT_DATA_PATH)
-def get_tournament_data():
-    '''Get Numerai tournament data as pd.DataFrame'''
+def get_tournament_data(from_cache=False):
+    '''Get Numerai tournament data as pd.DataFrame
+    Args:
+        from_cache: (bool) if from_cache is True,
+            data will be loaded from EXISTING_TOURNAMENT_DATA_PATH
+    '''
+    if from_cache:
+        return pd.read_csv(EXISTING_TOURNAMENT_DATA_PATH)
     tournament_data_csv_url = filter_url_list(_get_data_urls(), 'tournament')
     return safe_read_csv_from_url(tournament_data_csv_url)
 

@@ -11,8 +11,8 @@ FILE_CHANGED_WARNING = 'WARNING: the dataset has changed since the last cached v
 def check_against_cache(existing_path):
     '''decorator to check if the new data is different from cached'''
     def path_decorator(func):
-        def func_wrapper(existing_path=existing_path):
-            df = func()
+        def func_wrapper(existing_path=existing_path, **kwargs):
+            df = func(**kwargs)
             if not os.path.exists(existing_path):
                 print NO_FILE_WARNING
                 return df
