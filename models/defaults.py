@@ -1,3 +1,6 @@
+from funcy import pluck_attr, zipdict
+from inspect import isfunction
+
 from sklearn.decomposition import PCA
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.linear_model import LinearRegression, LogisticRegression, LassoCV
@@ -17,22 +20,46 @@ def make_polynomial_pipeline(model_name, model):
            ])
 
 
-poly_lasso = make_polynomial_pipeline('lasso', LassoCV)
+def poly_lasso():
+    '''PolynomialFeatures, LassoCV'''
+    return make_polynomial_pipeline('lasso', LassoCV)
 
 
-poly_log_reg = make_polynomial_pipeline('log_reg', LogisticRegression)
+def poly_log_reg():
+    '''PolynomialFeatures, LogisticRegression'''
+    return make_polynomial_pipeline('log_reg', LogisticRegression)
 
 
-poly_lin_reg = make_polynomial_pipeline('lin_reg', LinearRegression)
+def poly_lin_reg():
+    '''PolynomialFeatures, LinearRegression'''
+    return make_polynomial_pipeline('lin_reg', LinearRegression)
 
 
-pca_log_reg = Pipeline([
-                ('pca', PCA()),
-                ('log_reg', LogisticRegression())
-              ])
+def pca_log_reg():
+    '''PCA, LogisticRegression'''
+    return Pipeline([
+            ('pca', PCA()),
+            ('log_reg', LogisticRegression())
+           ])
+
+def poly_dt():
+    '''PolynomialFeatures, DecisionTreeClassifier'''
+    return make_polynomial_pipeline('decision_tree', DecisionTreeClassifier)
 
 
-poly_dt = make_polynomial_pipeline('decision_tree', DecisionTreeClassifier)
+def poly_random_forest():
+    '''PolynomialFeatures, RandomForestClassifier'''
+    return make_polynomial_pipeline('random_forest', RandomForestClassifier)
 
 
-poly_random_forest = make_polynomial_pipeline('random_forest', RandomForestClassifier)
+def model_dict(model_names, models):
+    '''Create a dictionary of model names and models'''
+    if model_names is None:
+        model_names = pluck_attr('__name__', models)
+    models_to_dict = []
+    for model in models:
+        if isfunction(model):
+            models_to_dict.append(model())
+        else:
+            models_to_dict.append(model)
+    return zipdict(model_names, models_to_dict)
