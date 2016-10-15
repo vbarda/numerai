@@ -1,5 +1,24 @@
 ### numerai - shared code for Numerai models
 
+#### Setup:
+
+```
+git clone https://github.com/vbarda/numerai.git
+```
+
+In the repository folder:
+
+```
+vi constants.py
+```
+
+In the file:
+
+```
+import os
+PROJECT_PATH=os.getcwd()
+```
+
 #### Usage:
 
 *Start Notebook*:
