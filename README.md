@@ -6,7 +6,7 @@
 git clone https://github.com/vbarda/numerai.git
 ```
 
-In the repository folder:
+In the repository directory:
 
 ```
 vi constants.py
@@ -15,8 +15,7 @@ vi constants.py
 In the file:
 
 ```
-import os
-PROJECT_PATH=os.getcwd()
+PROJECT_PATH = [path to repository directory]
 ```
 
 #### Usage:
