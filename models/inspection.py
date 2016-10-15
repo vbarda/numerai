@@ -4,7 +4,7 @@ import pandas as pd
 from tqdm import tqdm
 
 from models.cross_validation import CrossValidation
-from tools.utils import binarize
+from tools.helpers import binarize
 
 DEFAULT_METRICS = f1_score, accuracy_score, roc_auc_score
 
