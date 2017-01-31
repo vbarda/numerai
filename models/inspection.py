@@ -29,9 +29,9 @@ class ModelInspector(CrossValidation):
     def fit(self, full_train=False):
         '''fit each model in the self.models dictionary'''
         self.full_train = full_train or self.full_train
-        if full_train:
-            X, y = self.X, self.y
         X, y = self.X_train, self.y_train
+        if self.full_train:
+            X, y = self.X, self.y
         for model_name, model in tqdm(self.models.items()):
             model.fit(X, y)
             setattr(self, model_name, model)

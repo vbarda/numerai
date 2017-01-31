@@ -31,4 +31,3 @@ class CrossValidation(object):
         self.X_train, self.X_test, self.y_train, self.y_test = train_test_split(self.X, self.y,
                                                                                 test_size=test_size,
                                                                                 **kwargs)
-
