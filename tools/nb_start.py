@@ -9,6 +9,7 @@ import pandas as pd
 import numpy as np
 import funcy
 import os
+import xgboost as xgb
 
 from sklearn.decomposition import PCA
 from sklearn.ensemble import RandomForestClassifier, RandomForestRegressor
@@ -25,5 +26,5 @@ from models.inspection import ModelInspector
 from tools.helpers import binarize
 from tools.stats import display_biggest_corrs
 from tools.load_datasets import (
-    get_training_data, get_tournament_data, save_training_data, save_tournament_data
+    get_training_data, get_tournament_data, refresh_data
 )
